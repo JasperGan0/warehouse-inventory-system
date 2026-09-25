@@ -1,0 +1,16 @@
+import qrcode
+
+def create_qrcode(item_sku: str):
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data('Some data')
+    qr.make(fit=True)
+
+    img = qr.make_image(fill_color="black", back_color="white")
+    img.save(f'qrcodes/{item_sku}.png')
+
+create_qrcode('123456testing')
